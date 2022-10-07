@@ -14,8 +14,8 @@ export class UserService {
         };
     }
 
-    getUser(params: { userId: number }) {
-        return params;
+    getUser( userId: number ) {
+        return userId;
     }
 
     //------- POST -------//
@@ -26,17 +26,17 @@ export class UserService {
     //------- UPDATE -------//
     update(
         updateUserDTO: UpdateUserDto, 
-        params: { userId: number }
+        userId: number
     ) {
         return {
             body: updateUserDTO,
-            params: params
+            userId: userId
         };
     }
 
     //------- DELETE -------//
-    delete(params: { userId: number }) {
-        return params;
+    delete(userId: number ) {
+        return userId;
     }
 
 }

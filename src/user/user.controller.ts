@@ -6,7 +6,8 @@ import {
     Body,
     Param,
     Patch,
-    Delete
+    Delete,
+    ParseIntPipe
 } from "@nestjs/common";
 import { Request } from "express";
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -24,8 +25,8 @@ export class UserController {
     }
 
     @Get("/:userId")
-    getUser(@Param() params: { userId: number }) {
-        return this.userService.getUser(params);
+    getUser(@Param('userId', ParseIntPipe) userId: number) {
+        return this.userService.getUser(userId);
     }
 
     @Post()
@@ -36,14 +37,14 @@ export class UserController {
     @Patch("/:userId")
     updateUser(
         @Body() updateUserDTO: UpdateUserDto, 
-        @Param() params: { userId: number }
+        @Param('userId', ParseIntPipe) userId: number
     ) {
-        return this.userService.update(updateUserDTO, params);
+        return this.userService.update(updateUserDTO, userId);
     }
 
     @Delete("/:userId")
-    deleteUser(@Param() params: { userId: number }) {
-        return this.userService.delete(params)
+    deleteUser(@Param('userId', ParseIntPipe) userId: number) {
+        return this.userService.delete(userId)
     }
 
 }
