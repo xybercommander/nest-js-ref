@@ -18,10 +18,16 @@ export class UserService {
         return this.userRepository.find()
     }
 
-    getUser(userId: number) {
+    getUser(userId: number): Promise<User> {
         return this.userRepository.findOne({
             where: { id: userId }
         });
+    }
+
+    getUserByEmail(email: string): Promise<User> {
+        return this.userRepository.findOne({
+            where: { email }
+        })
     }
 
     //------- POST -------//
